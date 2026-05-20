@@ -352,6 +352,24 @@
   }
   .siren-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 
+  /* DIANA LODGE GALLERY */
+  .diana-gallery {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; margin-top: 2rem;
+  }
+  .diana-gallery-item {
+    overflow: hidden; border-radius: 2px;
+    transition: transform 0.3s ease;
+    aspect-ratio: 4/3;
+  }
+  .diana-gallery-item:hover {
+    transform: scale(1.05);
+  }
+  .diana-gallery-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block;
+  }
+
   /* CONTACT / FOOTER */
   footer {
     background: var(--earth); color: var(--sand);
@@ -411,6 +429,7 @@
     font-size: 0.85rem; letter-spacing: 0.06em;
     text-transform: uppercase; white-space: nowrap;
     flex-shrink: 0; transition: background 0.2s;
+    display: inline-block;
   }
   .btn-primary:hover { background: var(--sand); }
   .btn-outline {
@@ -424,7 +443,7 @@
   }
   .btn-outline:hover { border-color: rgba(255,255,255,0.8); }
 
-  /* Photo Gallery Style */
+  /* Photo placeholder style */
   .photo-slot {
     width: 100%; border-radius: 2px; overflow: hidden;
     position: relative;
@@ -440,23 +459,6 @@
     font-size: 0.72rem; color: rgba(196,212,200,0.4);
     letter-spacing: 0.12em; text-transform: uppercase;
     font-style: italic;
-  }
-
-  /* DIANA LODGE GALLERY */
-  .diana-gallery {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem; margin-top: 2rem;
-  }
-  .diana-gallery-item {
-    overflow: hidden; border-radius: 2px;
-    transition: transform 0.3s ease;
-  }
-  .diana-gallery-item:hover {
-    transform: scale(1.05);
-  }
-  .diana-gallery-item img {
-    width: 100%; height: 250px; object-fit: cover;
-    display: block;
   }
 
   @media (max-width: 900px) {
@@ -794,32 +796,36 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 </section>
 
-<!-- DIANA LODGE GALLERY -->
+<!-- DIANA LODGE SECTION -->
 <section id="diana" style="background: var(--cream);">
   <div style="text-align:center; margin-bottom:3rem;">
     <p class="section-eyebrow">Experience the place</p>
     <h2 class="section-title">Diana Lodge</h2>
-    <p class="section-body" style="margin:0 auto;">Our ecolodge nestled in the Malagasy mountains, where nature, community, and comfort meet. A unique haven for those seeking authentic connection and breathtaking beauty.</p>
+    <p class="section-body" style="margin:0 auto;">Our ecolodge nestled in the mountains of North Madagascar. A sanctuary where nature, sustainability, and authentic community connection meet. Diana Lodge is not just a place to stay — it's an invitation to be part of something meaningful.</p>
   </div>
-  
+
+  <p class="section-body" style="margin-bottom: 2rem;">Each room reflects the simplicity and elegance of Malagasy design. Solar power runs the lodge, fresh water comes from natural springs, and every detail has been thoughtfully created to minimize impact while maximizing comfort. Here, you are truly away from the world — yet closer to what matters most.</p>
+
+  <p class="section-body" style="margin-bottom: 3rem;">Stay with us, and your presence becomes part of SATYA's mission. A portion of every booking supports our four pillars of change: health, education, literacy, and environmental dignity. Come experience Doany. Come be part of the solution.</p>
+
   <div class="diana-gallery">
     <div class="diana-gallery-item">
-      <img src="https://ibb.co/0RRM1v30" alt="Diana Lodge 1">
+      <img src="https://i.ibb.co/BKHRm9Qp/Whats-App-Image-2026-05-19-at-18-10-37.jpg" alt="Diana Lodge 1">
     </div>
     <div class="diana-gallery-item">
-      <img src="https://ibb.co/0y3pXGvK" alt="Diana Lodge 2">
+      <img src="https://i.ibb.co/6crR0GWK/Whats-App-Image-2026-05-18-at-18-56-43.jpg" alt="Diana Lodge 2">
     </div>
     <div class="diana-gallery-item">
-      <img src="https://ibb.co/ZzbTTpff" alt="Diana Lodge 3">
+      <img src="https://i.ibb.co/Z6H5r0Gh/Whats-App-Image-2026-05-19-at-18-10-51.jpg" alt="Diana Lodge 3">
     </div>
     <div class="diana-gallery-item">
-      <img src="https://ibb.co/s9R0YGbd" alt="Diana Lodge 4">
+      <img src="https://i.ibb.co/5gk5ZZzx/Whats-App-Image-2026-05-19-at-18-11-21.jpg" alt="Diana Lodge 4">
     </div>
     <div class="diana-gallery-item">
-      <img src="https://ibb.co/qLWvjrMC" alt="Diana Lodge 5">
+      <img src="https://i.ibb.co/nNkpqvRF/Whats-App-Image-2026-05-19-at-18-11-38.jpg" alt="Diana Lodge 5">
     </div>
     <div class="diana-gallery-item">
-      <img src="https://ibb.co/XZ6pzftj" alt="Diana Lodge 6">
+      <img src="https://i.ibb.co/5DkC0PN/Whats-App-Image-2026-05-19-at-18-12-01.jpg" alt="Diana Lodge 6">
     </div>
   </div>
 </section>
@@ -834,15 +840,15 @@ document.addEventListener('DOMContentLoaded', function() {
   <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:3rem;">
     <div>
       <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--earth); margin-bottom: 0.5rem;">Jean-Claude & Béatrice</h3>
-      <p style="font-size: 0.85rem; color: rgba(44,26,14,0.7); line-height: 1.6;">Founders and residents of Doany. They live on-site, managing the ecolodge and coordinating all SATYA initiatives directly with the community.</p>
+      <p style="font-size: 0.85rem; color: rgba(44,26,14,0.7); line-height: 1.6;">Founders and residents of Doany. They live on-site, managing the ecolodge and coordinating all SATYA initiatives directly with the community. Their lived experience informs every decision.</p>
     </div>
     <div>
       <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--earth); margin-bottom: 0.5rem;">Local Leadership</h3>
-      <p style="font-size: 0.85rem; color: rgba(44,26,14,0.7); line-height: 1.6;">Community leaders and teachers in Doany who drive projects forward, ensure local ownership, and make decisions that reflect community values.</p>
+      <p style="font-size: 0.85rem; color: rgba(44,26,14,0.7); line-height: 1.6;">Community leaders, teachers, and healthcare workers from Doany. They drive projects forward, ensure local ownership, and make decisions that reflect their community's values and needs.</p>
     </div>
     <div>
       <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--earth); margin-bottom: 0.5rem;">Volunteers & Partners</h3>
-      <p style="font-size: 0.85rem; color: rgba(44,26,14,0.7); line-height: 1.6;">Educators, healthcare workers, and skilled tradespeople who donate their time to strengthen SATYA's impact across all four project areas.</p>
+      <p style="font-size: 0.85rem; color: rgba(44,26,14,0.7); line-height: 1.6;">Educators, healthcare professionals, skilled tradespeople, and committed individuals who donate their expertise and time to strengthen SATYA's impact across all four project areas.</p>
     </div>
   </div>
 </section>
@@ -852,14 +858,17 @@ document.addEventListener('DOMContentLoaded', function() {
   <div style="text-align:center;">
     <p class="section-eyebrow" style="color: var(--gold);">Resources</p>
     <h2 class="section-title" style="color: var(--sand);">Project Documentation</h2>
-    <p style="font-size:0.9rem; font-weight:300; color:rgba(232,213,176,0.6); max-width:500px; margin:0 auto 3rem;">Download our comprehensive project reports and learn more about SATYA's vision, progress, and impact.</p>
+    <p style="font-size:0.9rem; font-weight:300; color:rgba(232,213,176,0.6); max-width:500px; margin:0 auto 3rem;">Download our comprehensive project reports and learn more about SATYA's vision, progress, and impact in French, English, and German.</p>
     
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
-      <a href="https://drive.google.com/file/d/1KIb8oBLSuyWfTUpu2bm5Tv717CenmfhS/view?usp=sharing" target="_blank" class="btn-primary" style="justify-self: center; text-align: center;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; justify-items: center;">
+      <a href="https://drive.google.com/file/d/1KIb8oBLSuyWfTUpu2bm5Tv717CenmfhS/view?usp=sharing" target="_blank" class="btn-primary">
         📄 Download PDF (English)
       </a>
-      <a href="https://drive.google.com/file/d/1JYmwb8sq4WnOgr7YcVsMIx1BIxoBcFIn/view?usp=sharing" target="_blank" class="btn-primary" style="justify-self: center; text-align: center;">
-        📄 Download PDF (Français)
+      <a href="https://drive.google.com/file/d/1JYmwb8sq4WnOgr7YcVsMIx1BIxoBcFIn/view?usp=sharing" target="_blank" class="btn-primary">
+        📄 Télécharger PDF (Français)
+      </a>
+      <a href="https://drive.google.com/file/d/1BxqX1QDrugTpmejvdQ1VEaw_jPUte9ku/view?usp=drive_link" target="_blank" class="btn-primary">
+        📄 PDF Herunterladen (Deutsch)
       </a>
     </div>
   </div>
