@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journal — SATYA Madagascar</title>
+<meta name="description" content="News, updates, photos and videos from Doany, Madagascar. Follow the progress of SATYA's work on the ground.">
+<link rel="icon" type="image/png" href="logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --earth: #2C1A0E;
+    --terracotta: #B85C38;
+    --sand: #E8D5B0;
+    --sage: #6B7C5C;
+    --sky: #C4D4C8;
+    --cream: #F5EFE0;
+    --white: #FDFAF4;
+    --gold: #C8983A;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--earth);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 3rem;
+    background: rgba(253,250,244,0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(44,26,14,0.08);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 600; letter-spacing: 0.12em;
+    color: var(--earth); text-decoration: none;
+    flex-shrink: 0; margin-right: 2rem;
+  }
+  .nav-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; flex-wrap: nowrap; }
+  .nav-links a {
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--earth);
+    text-decoration: none; opacity: 0.65; transition: opacity 0.2s; white-space: nowrap;
+  }
+  .nav-links a:hover { opacity: 1; }
+  .nav-links a.active { opacity: 1; color: var(--terracotta); }
+  .nav-donate {
+    background: var(--terracotta); color: var(--white) !important;
+    opacity: 1 !important; padding: 0.48rem 1rem;
+    border-radius: 1px; font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    transition: background 0.2s; margin-left: 0.4rem;
+  }
+  .nav-donate:hover { background: var(--earth); }
+  .lang-switcher { display: flex; align-items: center; gap: 0.6rem; margin-left: 1.2rem; flex-shrink: 0; }
+  .lang-divider { width: 1px; height: 18px; background: rgba(44,26,14,0.15); }
+  .lang-btn {
+    background: none; border: none; cursor: pointer;
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: rgba(44,26,14,0.5);
+    padding: 0.3rem 0.5rem; transition: color 0.2s;
+  }
+  .lang-btn:hover { color: var(--earth); }
+  .lang-btn.active { color: var(--terracotta); font-weight: 700; }
+  .nav-hamburger {
+    display: none; flex-direction: column; justify-content: center; gap: 5px;
+    width: 36px; height: 36px; background: none; border: none; cursor: pointer;
+    padding: 4px; flex-shrink: 0; margin-left: auto;
+  }
+  .nav-hamburger span {
+    display: block; width: 22px; height: 1.5px; background: var(--earth);
+    transition: transform 0.3s ease, opacity 0.3s ease; transform-origin: center;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+  .nav-mobile-overlay {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99;
+    background: var(--white); padding: 5rem 2.5rem 3rem; flex-direction: column; overflow-y: auto;
+  }
+  .nav-mobile-overlay.open { display: flex; }
+  .nav-mobile-links { list-style: none; display: flex; flex-direction: column; gap: 0; border-top: 1px solid rgba(44,26,14,0.08); }
+  .nav-mobile-links li { border-bottom: 1px solid rgba(44,26,14,0.08); }
+  .nav-mobile-links a {
+    display: block; padding: 1.1rem 0; font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--earth);
+    text-decoration: none; opacity: 0.7; transition: opacity 0.2s, padding-left 0.2s;
+  }
+  .nav-mobile-links a:hover { opacity: 1; padding-left: 0.4rem; }
+  .nav-mobile-actions { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 2rem; }
+  .nav-mobile-actions a {
+    display: block; text-align: center; padding: 0.9rem 1.5rem;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: all 0.2s;
+  }
+  .nav-mobile-donate { background: var(--terracotta); color: var(--white) !important; }
+  .nav-mobile-lang {
+    display: flex; align-items: center; gap: 0; margin-top: 2rem;
+    border: 1px solid rgba(44,26,14,0.2); border-radius: 2px; overflow: hidden; align-self: flex-start;
+  }
+  .nav-mobile-lang .lang-btn { font-size: 0.78rem; padding: 0.5rem 1rem; }
+
+  /* ── JOURNAL HERO ── */
+  .journal-hero {
+    padding: 9rem 6rem 4rem;
+    background: var(--earth);
+    position: relative;
+    overflow: hidden;
+  }
+  .journal-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url('https://i.ibb.co/Z16n796D/justin-clark-H7Ji-EU8-Slnw-unsplash.jpg') center/cover no-repeat;
+    opacity: 0.12;
+  }
+  .journal-hero-inner { position: relative; z-index: 1; max-width: 800px; }
+  .journal-eyebrow {
+    font-size: 0.68rem; font-weight: 500; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;
+    display: block;
+  }
+  .journal-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 300; color: var(--sand); line-height: 1.1;
+    margin-bottom: 1.2rem;
+  }
+  .journal-hero p {
+    font-size: 1rem; font-weight: 300; color: rgba(232,213,176,0.65);
+    line-height: 1.7; max-width: 520px;
+  }
+
+  /* ── FILTER BAR ── */
+  .filter-bar {
+    background: var(--white);
+    border-bottom: 1px solid rgba(44,26,14,0.08);
+    padding: 1.2rem 6rem;
+    display: flex; align-items: center; gap: 0.6rem;
+    flex-wrap: wrap; position: sticky; top: 60px; z-index: 90;
+  }
+  .filter-label {
+    font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(44,26,14,0.4); margin-right: 0.4rem;
+  }
+  .filter-btn {
+    background: none; border: 1px solid rgba(44,26,14,0.15);
+    padding: 0.4rem 1rem; border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; color: rgba(44,26,14,0.6);
+    cursor: pointer; transition: all 0.2s;
+  }
+  .filter-btn:hover { border-color: var(--terracotta); color: var(--terracotta); }
+  .filter-btn.active {
+    background: var(--terracotta); border-color: var(--terracotta);
+    color: var(--white);
+  }
+
+  /* ── JOURNAL GRID ── */
+  .journal-section {
+    padding: 4rem 6rem 6rem;
+    max-width: 1400px; margin: 0 auto;
+  }
+  .journal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  /* ── CARD ── */
+  .journal-card {
+    background: var(--white);
+    border: 1px solid rgba(44,26,14,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+  .journal-card:hover {
+    box-shadow: 0 8px 32px rgba(44,26,14,0.1);
+    transform: translateY(-2px);
+  }
+  .journal-card.hidden { display: none; }
+  .card-image {
+    height: 220px; overflow: hidden; background: var(--sand); position: relative;
+  }
+  .card-image img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .journal-card:hover .card-image img { transform: scale(1.03); }
+  .card-image-placeholder {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, var(--sand) 0%, var(--sky) 100%);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .card-type-tag {
+    position: absolute; top: 1rem; left: 1rem;
+    font-size: 0.58rem; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; padding: 0.3rem 0.7rem;
+    border-radius: 100px; backdrop-filter: blur(8px);
+  }
+  .tag-update { background: rgba(44,26,14,0.75); color: var(--sand); }
+  .tag-news   { background: rgba(184,92,56,0.85); color: var(--white); }
+  .tag-photo  { background: rgba(107,124,92,0.85); color: var(--white); }
+  .tag-video  { background: rgba(200,152,58,0.9);  color: var(--earth); }
+
+  /* Video card special */
+  .card-video-wrap {
+    position: relative; height: 220px; overflow: hidden; background: #000;
+  }
+  .card-video-wrap iframe {
+    width: 100%; height: 100%; border: none;
+  }
+  .card-video-overlay {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    background: rgba(44,26,14,0.5); cursor: pointer; transition: background 0.2s;
+  }
+  .card-video-overlay:hover { background: rgba(44,26,14,0.3); }
+  .play-icon {
+    width: 56px; height: 56px; background: rgba(255,255,255,0.95);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3); transition: transform 0.2s;
+  }
+  .card-video-overlay:hover .play-icon { transform: scale(1.08); }
+  .play-icon svg { margin-left: 4px; }
+
+  .card-body { padding: 1.5rem; }
+  .card-meta {
+    display: flex; align-items: center; gap: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+  .card-date {
+    font-size: 0.65rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(44,26,14,0.4);
+  }
+  .card-dot {
+    width: 3px; height: 3px; border-radius: 50%;
+    background: rgba(44,26,14,0.25); flex-shrink: 0;
+  }
+  .card-author {
+    font-size: 0.65rem; color: rgba(44,26,14,0.4);
+  }
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem; font-weight: 400; color: var(--earth);
+    line-height: 1.3; margin-bottom: 0.7rem;
+  }
+  .card-teaser {
+    font-size: 0.83rem; font-weight: 300; color: rgba(44,26,14,0.65);
+    line-height: 1.65; margin-bottom: 1.2rem;
+  }
+  .card-read-more {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--terracotta);
+    text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;
+    transition: gap 0.2s;
+  }
+  .card-read-more:hover { gap: 0.7rem; }
+
+  /* ── FEATURED CARD (full width) ── */
+  .journal-card.featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .journal-card.featured .card-image { height: 100%; min-height: 320px; }
+  .journal-card.featured .card-body { padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; }
+  .journal-card.featured .card-title { font-size: 2rem; }
+  .journal-card.featured .card-teaser { font-size: 0.9rem; }
+
+  /* ── NEWSLETTER CTA ── */
+  .newsletter-section {
+    background: var(--earth);
+    padding: 5rem 6rem;
+    text-align: center;
+  }
+  .newsletter-inner { max-width: 560px; margin: 0 auto; }
+  .newsletter-eyebrow {
+    font-size: 0.68rem; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: block;
+  }
+  .newsletter-inner h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem; font-weight: 300; color: var(--sand);
+    margin-bottom: 0.8rem; line-height: 1.2;
+  }
+  .newsletter-inner p {
+    font-size: 0.88rem; color: rgba(232,213,176,0.6); line-height: 1.7; margin-bottom: 2rem;
+  }
+  .newsletter-form { display: flex; gap: 0; max-width: 440px; margin: 0 auto; }
+  .newsletter-input {
+    flex: 1; padding: 0.85rem 1.2rem;
+    background: rgba(232,213,176,0.1); border: 1px solid rgba(232,213,176,0.2);
+    border-right: none; border-radius: 2px 0 0 2px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.85rem; color: var(--sand);
+    outline: none;
+  }
+  .newsletter-input::placeholder { color: rgba(232,213,176,0.35); }
+  .newsletter-input:focus { border-color: rgba(232,213,176,0.5); }
+  .newsletter-btn {
+    background: var(--terracotta); color: var(--white); border: none;
+    padding: 0.85rem 1.5rem; border-radius: 0 2px 2px 0;
+    font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer;
+    transition: background 0.2s; white-space: nowrap;
+  }
+  .newsletter-btn:hover { background: var(--gold); }
+  .newsletter-note {
+    font-size: 0.7rem; color: rgba(232,213,176,0.3); margin-top: 1rem;
+  }
+
+  /* ── MODAL (read more) ── */
+  .entry-modal {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(44,26,14,0.7); backdrop-filter: blur(4px);
+    align-items: flex-start; justify-content: center;
+    padding: 2rem; overflow-y: auto;
+  }
+  .entry-modal.open { display: flex; }
+  .modal-inner {
+    background: var(--white); max-width: 720px; width: 100%;
+    border-radius: 2px; padding: 3rem;
+    position: relative; margin: auto;
+  }
+  .modal-close {
+    position: absolute; top: 1.2rem; right: 1.2rem;
+    background: none; border: none; cursor: pointer;
+    font-size: 1.5rem; color: rgba(44,26,14,0.35); line-height: 1;
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--earth); }
+  .modal-tag { display: inline-block; margin-bottom: 1.2rem; }
+  .modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem; font-weight: 400; color: var(--earth);
+    line-height: 1.2; margin-bottom: 0.8rem;
+  }
+  .modal-meta { font-size: 0.72rem; color: rgba(44,26,14,0.4); margin-bottom: 2rem; }
+  .modal-image {
+    width: 100%; height: 300px; object-fit: cover;
+    border-radius: 2px; margin-bottom: 1.8rem;
+  }
+  .modal-body { font-size: 0.92rem; font-weight: 300; line-height: 1.8; color: rgba(44,26,14,0.8); }
+  .modal-body p { margin-bottom: 1rem; }
+  .modal-video { width: 100%; aspect-ratio: 16/9; border-radius: 2px; margin-bottom: 1.8rem; border: none; }
+  .modal-divider { border: none; border-top: 1px solid rgba(44,26,14,0.08); margin: 2rem 0; }
+  .modal-donate {
+    display: inline-block; background: var(--terracotta); color: var(--white);
+    padding: 0.8rem 2rem; border-radius: 2px;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none; transition: background 0.2s;
+  }
+  .modal-donate:hover { background: var(--earth); }
+
+  /* ── FOOTER ── */
+  footer { background: var(--earth); }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem; padding: 4rem 6rem;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 600; letter-spacing: 0.1em;
+    color: var(--sand); margin-bottom: 1rem;
+  }
+  .footer-tagline { font-size: 0.82rem; color: rgba(232,213,176,0.45); line-height: 1.7; }
+  .footer-col h4 {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-col li { font-size: 0.8rem; color: rgba(232,213,176,0.45); }
+  .footer-col li a { color: rgba(232,213,176,0.45); text-decoration: none; transition: color 0.2s; }
+  .footer-col li a:hover { color: var(--sand); }
+  .footer-bottom {
+    border-top: 1px solid rgba(232,213,176,0.08);
+    padding: 1.5rem 6rem; display: flex;
+    justify-content: space-between; align-items: center;
+  }
+  .footer-bottom span { font-size: 0.72rem; color: rgba(232,213,176,0.3); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .journal-grid { grid-template-columns: repeat(2, 1fr); }
+    .journal-card.featured { grid-column: 1 / -1; grid-template-columns: 1fr; }
+    .journal-card.featured .card-image { height: 260px; }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links, .lang-switcher { display: none; }
+    .nav-hamburger { display: flex; }
+    .journal-hero { padding: 7rem 1.5rem 3rem; }
+    .filter-bar { padding: 1rem 1.5rem; top: 56px; }
+    .journal-section { padding: 2.5rem 1.5rem 4rem; }
+    .journal-grid { grid-template-columns: 1fr; }
+    .newsletter-section { padding: 3.5rem 1.5rem; }
+    .newsletter-form { flex-direction: column; }
+    .newsletter-input { border-right: 1px solid rgba(232,213,176,0.2); border-radius: 2px; border-bottom: none; border-radius: 2px 2px 0 0; }
+    .newsletter-btn { border-radius: 0 0 2px 2px; }
+    .footer-top { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 2rem; }
+    .footer-bottom { padding: 1.2rem 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    .modal-inner { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">SATYA</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about" data-en="Our Story" data-fr="Notre Histoire" data-de="Unsere Geschichte">Our Story</a></li>
+    <li><a href="index.html#projects" data-en="Projects" data-fr="Projets" data-de="Projekte">Projects</a></li>
+    <li><a href="journal.html" class="active" data-en="Journal" data-fr="Journal" data-de="Journal">Journal</a></li>
+    <li><a href="index.html#why" data-en="Why Give" data-fr="Pourquoi Donner" data-de="Warum Spenden">Why Give</a></li>
+    <li><a href="index.html#contact" class="nav-write nav-donate" data-en="Donate" data-fr="Donner" data-de="Spenden">Donate</a></li>
+  </ul>
+  <div class="lang-switcher">
+    <div class="lang-divider"></div>
+    <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="btn-fr" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" id="btn-de" onclick="setLang('de')">DE</button>
+  </div>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE OVERLAY -->
+<div class="nav-mobile-overlay" id="nav-mobile-overlay">
+  <ul class="nav-mobile-links">
+    <li><a href="index.html#about" onclick="closeMobileNav()" data-en="Our Story" data-fr="Notre Histoire" data-de="Unsere Geschichte">Our Story</a></li>
+    <li><a href="index.html#projects" onclick="closeMobileNav()" data-en="Projects" data-fr="Projets" data-de="Projekte">Projects</a></li>
+    <li><a href="journal.html" onclick="closeMobileNav()" data-en="Journal" data-fr="Journal" data-de="Journal">Journal</a></li>
+    <li><a href="index.html#why" onclick="closeMobileNav()" data-en="Why Give" data-fr="Pourquoi Donner" data-de="Warum Spenden">Why Give</a></li>
+  </ul>
+  <div class="nav-mobile-actions">
+    <a href="index.html#donate" class="nav-mobile-donate" onclick="closeMobileNav()" data-en="Donate" data-fr="Donner" data-de="Spenden">Donate</a>
+  </div>
+  <div class="nav-mobile-lang">
+    <button class="lang-btn active" id="mob-btn-en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="mob-btn-fr" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" id="mob-btn-de" onclick="setLang('de')">DE</button>
+  </div>
+</div>
+
+<!-- JOURNAL HERO -->
+<section class="journal-hero">
+  <div class="journal-hero-inner">
+    <span class="journal-eyebrow" data-en="From Doany · Every two weeks" data-fr="Depuis Doany · Toutes les deux semaines" data-de="Aus Doany · Alle zwei Wochen">From Doany · Every two weeks</span>
+    <h1 data-en="Journal" data-fr="Journal" data-de="Journal">Journal</h1>
+    <p data-en="News, updates, photos and videos from the ground. Follow the real progress of SATYA's work in Doany, Madagascar." data-fr="Actualités, mises à jour, photos et vidéos depuis le terrain. Suivez les progrès réels du travail de SATYA à Doany, Madagascar." data-de="Neuigkeiten, Updates, Fotos und Videos vor Ort. Verfolgen Sie den echten Fortschritt von SATYAs Arbeit in Doany, Madagaskar.">News, updates, photos and videos from the ground. Follow the real progress of SATYA's work in Doany, Madagascar.</p>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-bar" id="filter-bar">
+  <span class="filter-label" data-en="Filter:" data-fr="Filtrer :" data-de="Filtern:">Filter:</span>
+  <button class="filter-btn active" onclick="filterCards('all')" data-en="All" data-fr="Tout" data-de="Alle">All</button>
+  <button class="filter-btn" onclick="filterCards('update')" data-en="Update" data-fr="Mise à jour" data-de="Update">Update</button>
+  <button class="filter-btn" onclick="filterCards('news')" data-en="News" data-fr="Actualité" data-de="News">News</button>
+  <button class="filter-btn" onclick="filterCards('photo')" data-en="Photos" data-fr="Photos" data-de="Fotos">Photos</button>
+  <button class="filter-btn" onclick="filterCards('video')" data-en="Video" data-fr="Vidéo" data-de="Video">Video</button>
+</div>
+
+<!-- JOURNAL ENTRIES -->
+<div class="journal-section">
+  <div class="journal-grid" id="journal-grid">
+
+    <!-- ENTRY 1: FEATURED — Update -->
+    <article class="journal-card featured" data-type="update" onclick="openModal('modal-1')">
+      <div class="card-image">
+        <img src="https://i.ibb.co/Z16n796D/justin-clark-H7Ji-EU8-Slnw-unsplash.jpg" alt="Das erworbene Land — zukünftiger Standort des Dispensaires in Doany" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;transition:transform 0.4s ease;">
+        <span class="card-type-tag tag-update" data-en="Update" data-fr="Mise à jour" data-de="Update">Update</span>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-date" data-en="June 13, 2026" data-fr="13 juin 2026" data-de="13. Juni 2026">June 13, 2026</span>
+          <span class="card-dot"></span>
+          <span class="card-author">Arturo</span>
+        </div>
+        <h2 class="card-title" data-en="We bought land and a building in Doany. Now we need 3,500€ to renovate it." data-fr="Nous avons acheté un terrain et un bâtiment à Doany. Il nous faut maintenant 3 500€ pour le rénover." data-de="Wir haben Land und ein Gebäude in Doany gekauft. Jetzt brauchen wir 3.500€ für die Renovierung.">We bought land and a building in Doany. Now we need 3,500€ to renovate it.</h2>
+        <p class="card-teaser" data-en="What used to be a 16,500€ new build is now a renovation project — concrete, affordable, and ready to become a clinic for 200 people." data-fr="Ce qui devait être une construction neuve à 16 500€ est maintenant un projet de rénovation — concret, abordable, et prêt à devenir une clinique pour 200 personnes." data-de="Was mal ein 16.500€-Neubau werden sollte, ist jetzt ein Renovierungsprojekt — konkret, machbar, und bereit als Krankenstation für 200 Menschen zu dienen.">What used to be a 16,500€ new build is now a renovation project — concrete, affordable, and ready to become a clinic for 200 people.</p>
+        <span class="card-read-more" data-en="Read more →" data-fr="Lire la suite →" data-de="Mehr lesen →">Read more →</span>
+      </div>
+    </article>
+
+  </div><!-- /journal-grid -->
+</div><!-- /journal-section -->
+
+<!-- NEWSLETTER CTA -->
+<section class="newsletter-section">
+  <div class="newsletter-inner">
+    <span class="newsletter-eyebrow" data-en="Stay close" data-fr="Restez proche" data-de="Bleiben Sie nah dran">Stay close</span>
+    <h2 data-en="Get the journal in your inbox" data-fr="Recevez le journal dans votre boîte mail" data-de="Das Journal direkt in Ihr Postfach">Get the journal in your inbox</h2>
+    <p data-en="Every two weeks, a short update from Doany. No spam — just real news from the ground, directly from Béa and Arturo." data-fr="Toutes les deux semaines, une courte mise à jour depuis Doany. Pas de spam — juste de vraies nouvelles du terrain, directement de Béa et Arturo." data-de="Alle zwei Wochen ein kurzes Update aus Doany. Kein Spam — nur echte Neuigkeiten vor Ort, direkt von Béa und Arturo.">Every two weeks, a short update from Doany. No spam — just real news from the ground, directly from Béa and Arturo.</p>
+    <div class="newsletter-form">
+      <input class="newsletter-input" type="email" id="nl-email" placeholder="your@email.com">
+      <button class="newsletter-btn" onclick="subscribeNewsletter()" data-en="Subscribe" data-fr="S'abonner" data-de="Abonnieren">Subscribe</button>
+    </div>
+    <p class="newsletter-note" data-en="You can unsubscribe at any time. We write in EN / FR / DE." data-fr="Vous pouvez vous désabonner à tout moment. Nous écrivons en EN / FR / DE." data-de="Sie können sich jederzeit abmelden. Wir schreiben auf EN / FR / DE.">You can unsubscribe at any time. We write in EN / FR / DE.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-top">
+    <div>
+      <h3 class="footer-logo">SATYA</h3>
+      <p class="footer-tagline" data-en="Truth. Action. Change. A French association working in partnership with the community of Doany, Madagascar." data-fr="Vérité. Action. Changement. Une association française travaillant en partenariat avec la communauté de Doany, Madagascar." data-de="Wahrheit. Aktion. Wandel. Ein französischer Verein in Partnerschaft mit der Gemeinschaft von Doany, Madagaskar.">Truth. Action. Change. A French association working in partnership with the community of Doany, Madagascar.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-en="Quick Links" data-fr="Liens Rapides" data-de="Schnelllinks">Quick Links</h4>
+      <ul>
+        <li><a href="index.html#about" data-en="Our Story" data-fr="Notre Histoire" data-de="Unsere Geschichte">Our Story</a></li>
+        <li><a href="index.html#projects" data-en="Projects" data-fr="Projets" data-de="Projekte">Projects</a></li>
+        <li><a href="journal.html" data-en="Journal" data-fr="Journal" data-de="Journal">Journal</a></li>
+        <li><a href="index.html#association" data-en="Association" data-fr="Association" data-de="Verein">Association</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-en="Contact" data-fr="Contact" data-de="Kontakt">Contact</h4>
+      <ul>
+        <li>contact@projectsatyamada.org</li>
+        <li data-en="Doany, Madagascar" data-fr="Doany, Madagascar" data-de="Doany, Madagaskar">Doany, Madagascar</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 SATYA. All rights reserved.</span>
+    <span>Association loi 1901 · SIREN 921 476 651</span>
+  </div>
+</footer>
+
+<!-- MODALS -->
+
+<!-- Modal 1: Dispensaire Update -->
+<div id="modal-1" class="entry-modal" onclick="closeModalOnBg(event, 'modal-1')">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closeModal('modal-1')">×</button>
+    <span class="modal-tag card-type-tag tag-update" style="position:static;" data-en="Update" data-fr="Mise à jour" data-de="Update">Update</span>
+    <h2 class="modal-title" data-en="We bought land and a building in Doany. Now we need 3,500€ to renovate it." data-fr="Nous avons acheté un terrain et un bâtiment à Doany. Il nous faut maintenant 3 500€ pour le rénover." data-de="Wir haben Land und ein Gebäude in Doany gekauft. Jetzt brauchen wir 3.500€ für die Renovierung.">We bought land and a building in Doany. Now we need 3,500€ to renovate it.</h2>
+    <p class="modal-meta">
+      <span data-en="June 2026" data-fr="Juin 2026" data-de="Juni 2026">June 2026</span> · Arturo
+    </p>
+    <div class="modal-body">
+      <p data-en="I want to tell you what's actually happened, because it changes things quite a bit." data-fr="Je veux vous dire ce qui s'est vraiment passé, parce que ça change beaucoup de choses." data-de="Ich möchte kurz erzählen was passiert ist, weil es wirklich einiges verändert.">I want to tell you what's actually happened, because it changes things quite a bit.</p>
+      <p data-en="We found a building in Doany — an old house at the edge of the village that wasn't being used. We were able to buy it, land included, with private funds. That means the dispensary now has a real place. It exists. It just needs to be renovated." data-fr="Nous avons trouvé un bâtiment à Doany — une vieille maison en bordure du village qui n'était pas utilisée. Nous avons pu l'acheter, terrain compris, avec des fonds propres. Ça veut dire que le dispensaire a maintenant un endroit réel. Il existe. Il faut juste le rénover." data-de="Wir haben ein Gebäude in Doany gefunden — ein altes Haus am Rand des Dorfes, das nicht genutzt wurde. Wir konnten es kaufen, Grundstück inklusive, aus eigenen Mitteln. Das bedeutet: Das Dispensaire hat jetzt einen echten Ort. Es existiert. Es muss nur noch renoviert werden.">We found a building in Doany — an old house at the edge of the village that wasn't being used. We were able to buy it, land included, with private funds. That means the dispensary now has a real place. It exists. It just needs to be renovated.</p>
+      <p data-en="What was originally planned as a 16,500€ new build is now a renovation — 3,500€ for the work and basic medical equipment. That's it. That's what this campaign is about." data-fr="Ce qui était initialement prévu comme une construction neuve à 16 500€ est maintenant une rénovation — 3 500€ pour les travaux et l'équipement médical de base. C'est tout. C'est l'objet de cette campagne." data-de="Was ursprünglich als 16.500€-Neubau geplant war, ist jetzt eine Renovierung — 3.500€ für die Arbeiten und die medizinische Grundausstattung. Das ist alles. Darum geht es bei dieser Kampagne.">What was originally planned as a 16,500€ new build is now a renovation — 3,500€ for the work and basic medical equipment. That's it. That's what this campaign is about.</p>
+      <p data-en="Our nurse Lalao is already in Doany. I personally cover most of her salary. She's doing her job with what she has — but she needs a proper space to work in. That's what the dispensary gives her." data-fr="Notre infirmière Lalao est déjà à Doany. Je prends en charge la majeure partie de son salaire personnellement. Elle fait son travail avec ce qu'elle a — mais elle a besoin d'un espace approprié pour travailler. C'est ce que le dispensaire lui donnera." data-de="Unsere Krankenschwester Lalao ist schon in Doany. Ich übernehme den größten Teil ihres Gehalts selbst. Sie macht ihre Arbeit mit dem was sie hat — aber sie braucht einen richtigen Raum dafür. Den gibt ihr das Dispensaire.">Our nurse Lalao is already in Doany. I personally cover most of her salary. She's doing her job with what she has — but she needs a proper space to work in. That's what the dispensary gives her.</p>
+      <p data-en="If you'd like to help — once, monthly, or as an association member — you can do so via HelloAsso (with official tax receipt), GoFundMe, or direct bank transfer. Everything's on the website. And if you just share this — that counts too. 🙏" data-fr="Si vous souhaitez aider — une fois, chaque mois ou en tant que membre de l'association — vous pouvez le faire via HelloAsso (avec reçu fiscal officiel), GoFundMe ou virement bancaire direct. Tout est sur le site. Et si vous partagez simplement — ça compte aussi. 🙏" data-de="Wer helfen möchte — einmalig, monatlich oder als Vereinsmitglied — kann das über HelloAsso (mit offizieller Spendenquittung), GoFundMe oder direkt per Banküberweisung tun. Alles auf der Website. Und wer einfach teilt — auch das zählt. 🙏">If you'd like to help — once, monthly, or as an association member — you can do so via HelloAsso (with official tax receipt), GoFundMe, or direct bank transfer. Everything's on the website. And if you just share this — that counts too. 🙏</p>
+    </div>
+    <hr class="modal-divider">
+    <a href="index.html#donate" class="modal-donate" data-en="Support the dispensary →" data-fr="Soutenir le dispensaire →" data-de="Das Dispensaire unterstützen →">Support the dispensary →</a>
+  </div>
+</div>
+
+
+<script>
+// ── LANGUAGE ──
+function setLang(lang) {
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+  const d = document.getElementById('btn-' + lang);
+  const m = document.getElementById('mob-btn-' + lang);
+  if (d) d.classList.add('active');
+  if (m) m.classList.add('active');
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-en], [data-fr], [data-de]').forEach(el => {
+    const txt = lang === 'fr' ? el.getAttribute('data-fr') :
+                lang === 'de' ? el.getAttribute('data-de') :
+                el.getAttribute('data-en');
+    if (txt) el.innerHTML = txt;
+  });
+}
+
+// ── FILTER ──
+function filterCards(type) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.journal-card').forEach(card => {
+    if (type === 'all' || card.dataset.type === type) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+
+// ── MODAL ──
+function openModal(id) {
+  document.getElementById(id).classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeModalOnBg(e, id) {
+  if (e.target.classList.contains('entry-modal')) closeModal(id);
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.entry-modal.open').forEach(m => {
+      m.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  }
+});
+
+// ── NEWSLETTER ──
+function subscribeNewsletter() {
+  const email = document.getElementById('nl-email').value.trim();
+  if (!email || !email.includes('@')) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+  // TODO: connect to Mailchimp / Substack / Formspree
+  alert('Thank you! We\'ll be in touch from Doany 🌿');
+  document.getElementById('nl-email').value = '';
+}
+
+// ── HAMBURGER ──
+document.addEventListener('DOMContentLoaded', function() {
+  setLang('en');
+  const hamburger = document.getElementById('nav-hamburger');
+  const overlay   = document.getElementById('nav-mobile-overlay');
+  hamburger.addEventListener('click', function() {
+    const isOpen = overlay.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closeMobileNav();
+  });
+});
+function closeMobileNav() {
+  const hamburger = document.getElementById('nav-hamburger');
+  const overlay   = document.getElementById('nav-mobile-overlay');
+  overlay.classList.remove('open');
+  hamburger.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+</script>
+</body>
+</html>
