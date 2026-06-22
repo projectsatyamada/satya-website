@@ -699,8 +699,56 @@
       </div>
     </article>
 
-    <!-- ENTRY 6: Video — Doany Kinder -->
-    <article class="journal-card" data-type="video" onclick="openModal('modal-6')">
+    <!-- ENTRY 6: Foto — Schuhe für die Kinder -->
+    <article class="journal-card" data-type="photo" onclick="openModal('modal-6')">
+      <div class="card-image">
+        <img src="schuhe-kinder.jpeg" alt="Schuhe für die Kinder in Doany" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;">
+        <span class="card-type-tag tag-photo" data-en="Photos" data-fr="Photos" data-de="Fotos">Fotos</span>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-date" data-en="June 23, 2026" data-fr="23 juin 2026" data-de="23. Juni 2026">23. Juni 2026</span>
+          <span class="card-dot"></span>
+          <span class="card-author">Artur</span>
+        </div>
+        <h2 class="card-title"
+          data-en="Shoes for the children of Doany."
+          data-fr="Des chaussures pour les enfants de Doany."
+          data-de="Schuhe für die Kinder von Doany.">Schuhe für die Kinder von Doany.</h2>
+        <p class="card-teaser"
+          data-en="Every pair counts. Shoes donated by friends, packed and heading to Doany."
+          data-fr="Chaque paire compte. Des chaussures données par des amis, emballées et en route pour Doany."
+          data-de="Jedes Paar zählt. Schuhe von Freunden gespendet — eingepackt, auf dem Weg nach Doany.">Jedes Paar zählt. Schuhe von Freunden gespendet — eingepackt, auf dem Weg nach Doany.</p>
+        <span class="card-read-more" data-en="View →" data-fr="Voir →" data-de="Ansehen →">Ansehen →</span>
+      </div>
+    </article>
+
+    <!-- ENTRY 7: Foto — Fußballtrikots -->
+    <article class="journal-card" data-type="photo" onclick="openModal('modal-7')">
+      <div class="card-image">
+        <img src="fussball-kits.jpeg" alt="Fußballtrikots für die Kinder in Doany" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center 50%;">
+        <span class="card-type-tag tag-photo" data-en="Photos" data-fr="Photos" data-de="Fotos">Fotos</span>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-date" data-en="June 23, 2026" data-fr="23 juin 2026" data-de="23. Juni 2026">23. Juni 2026</span>
+          <span class="card-dot"></span>
+          <span class="card-author">Artur</span>
+        </div>
+        <h2 class="card-title"
+          data-en="Football kits — all the way to Madagascar."
+          data-fr="Maillots de foot — jusqu'à Madagascar."
+          data-de="Fußballtrikots — bis nach Madagaskar.">Fußballtrikots — bis nach Madagaskar.</h2>
+        <p class="card-teaser"
+          data-en="Full kits, ready to go. Football is more than a game — it's the language kids speak everywhere."
+          data-fr="Tenues complètes, prêtes à partir. Le foot est plus qu'un jeu — c'est la langue que parlent les enfants partout."
+          data-de="Komplette Trikots, bereit zum Abflug. Fußball ist mehr als ein Spiel — es ist die Sprache die Kinder überall sprechen.">Komplette Trikots, bereit zum Abflug. Fußball ist mehr als ein Spiel — es ist die Sprache die Kinder überall sprechen.</p>
+        <span class="card-read-more" data-en="View →" data-fr="Voir →" data-de="Ansehen →">Ansehen →</span>
+      </div>
+    </article>
+
+    <!-- ENTRY 8: Video — Doany Kinder -->
+    <article class="journal-card" data-type="video" onclick="openModal('modal-8')">
       <div class="card-video-wrap">
         <img src="https://img.youtube.com/vi/VXmuYMiKbZM/hqdefault.jpg" alt="Die Kinder von Doany" style="width:100%;height:100%;object-fit:cover;">
         <div class="card-video-overlay">
@@ -884,10 +932,46 @@
   </div>
 </div>
 
-<!-- Modal 6: Video Kinder -->
+<!-- Modal 6: Schuhe -->
 <div id="modal-6" class="entry-modal" onclick="closeModalOnBg(event, 'modal-6')">
   <div class="modal-inner">
     <button class="modal-close" onclick="closeModal('modal-6')">×</button>
+    <span class="modal-tag card-type-tag tag-photo" style="position:static;" data-en="Photos" data-fr="Photos" data-de="Fotos">Fotos</span>
+    <h2 class="modal-title" data-en="Shoes for the children of Doany." data-fr="Des chaussures pour les enfants de Doany." data-de="Schuhe für die Kinder von Doany.">Schuhe für die Kinder von Doany.</h2>
+    <p class="modal-meta"><span data-en="June 23, 2026" data-fr="23 juin 2026" data-de="23. Juni 2026">23. Juni 2026</span> · Artur</p>
+    <img src="schuhe-kinder.jpeg" class="modal-image" alt="Schuhe für die Kinder in Doany" style="object-position:center 40%;">
+    <div class="modal-body">
+      <p data-en="Every pair of shoes matters when you live in a mountain village with rough paths and no nearby shop. These were donated by friends of SATYA and are heading directly to Doany."
+         data-fr="Chaque paire de chaussures compte quand on vit dans un village de montagne avec des sentiers difficiles et aucun magasin à proximité. Elles ont été données par des amis de SATYA et vont directement à Doany."
+         data-de="Jedes Paar Schuhe zählt wenn man in einem Bergdorf lebt mit rauen Wegen und keinem Laden in der Nähe. Gespendet von Freunden von SATYA — direkt nach Doany.">Jedes Paar Schuhe zählt wenn man in einem Bergdorf lebt mit rauen Wegen und keinem Laden in der Nähe. Gespendet von Freunden von SATYA — direkt nach Doany.</p>
+    </div>
+    <hr class="modal-divider">
+    <a href="index.html#donate" class="modal-donate" data-en="Support SATYA →" data-fr="Soutenir SATYA →" data-de="SATYA unterstützen →">SATYA unterstützen →</a>
+  </div>
+</div>
+
+<!-- Modal 7: Fußballtrikots -->
+<div id="modal-7" class="entry-modal" onclick="closeModalOnBg(event, 'modal-7')">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closeModal('modal-7')">×</button>
+    <span class="modal-tag card-type-tag tag-photo" style="position:static;" data-en="Photos" data-fr="Photos" data-de="Fotos">Fotos</span>
+    <h2 class="modal-title" data-en="Football kits — all the way to Madagascar." data-fr="Maillots de foot — jusqu'à Madagascar." data-de="Fußballtrikots — bis nach Madagaskar.">Fußballtrikots — bis nach Madagaskar.</h2>
+    <p class="modal-meta"><span data-en="June 23, 2026" data-fr="23 juin 2026" data-de="23. Juni 2026">23. Juni 2026</span> · Artur</p>
+    <img src="fussball-kits.jpeg" class="modal-image" alt="Fußballtrikots für die Kinder in Doany">
+    <div class="modal-body">
+      <p data-en="Full kits, ready to go. Football is more than a game — it's the language kids speak everywhere. In Doany, in Zurich, everywhere. These trikots were collected by friends and will be handed over to Béa on La Réunion."
+         data-fr="Tenues complètes, prêtes à partir. Le foot est plus qu'un jeu — c'est la langue que parlent les enfants partout. À Doany, à Zurich, partout. Ces maillots ont été collectés par des amis et seront remis à Béa à La Réunion."
+         data-de="Komplette Trikots, bereit zum Abflug. Fußball ist mehr als ein Spiel — es ist die Sprache die Kinder überall sprechen. In Doany, in Zürich, überall. Die Trikots wurden von Freunden gesammelt und in La Réunion an Béa übergeben.">Komplette Trikots, bereit zum Abflug. Fußball ist mehr als ein Spiel — es ist die Sprache die Kinder überall sprechen. In Doany, in Zürich, überall. Die Trikots wurden von Freunden gesammelt und in La Réunion an Béa übergeben.</p>
+    </div>
+    <hr class="modal-divider">
+    <a href="index.html#donate" class="modal-donate" data-en="Support SATYA →" data-fr="Soutenir SATYA →" data-de="SATYA unterstützen →">SATYA unterstützen →</a>
+  </div>
+</div>
+
+<!-- Modal 8: Video Kinder -->
+<div id="modal-8" class="entry-modal" onclick="closeModalOnBg(event, 'modal-8')">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closeModal('modal-8')">×</button>
     <span class="modal-tag card-type-tag tag-video" style="position:static;" data-en="Video" data-fr="Vidéo" data-de="Video">Video</span>
     <h2 class="modal-title"
       data-en="The children of Doany — filmed by Béa."
